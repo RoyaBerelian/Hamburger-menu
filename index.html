@@ -12,13 +12,18 @@
             box-sizing: border-box;
         }
 
+        body {
+            background: #ffffff;
+        }
+
         .nav {
+            position: absolute;
+            z-index: 9;
             width: 54px;
             height: 100vh;
-            background-color: #eee;
+            background-color: #EEEEEE;
 
             .nav-icon {
-                position: absolute;
                 top: 0px;
                 width: 32px;
                 height: 32px;
@@ -74,6 +79,42 @@
                 width: 100% !important;
             }
         }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0px;
+            width: 0%;
+            height: 100vh;
+            background: #EEEEEE;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            transition: 0.6s;
+
+            >h1 {
+                font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+                font-size: 36px;
+                font-weight: bold;
+                color: #030303;
+                margin: 30px 0px;
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 0.5s ease;
+                transition-delay: calc(0.15s * var(--i));
+            }
+        }
+
+        .active {
+            width: 100%;
+
+            >h1 {
+                transform: translateY(0px);
+                opacity: 1;
+
+            }
+        }
     </style>
 </head>
 
@@ -85,11 +126,19 @@
             <span></span>
         </div>
     </div>
+    <div class="menu">
+        <h1 style="--i:1">Bio</h1>
+        <h1 style="--i:2">Work</h1>
+        <h1 style="--i:3">Notes</h1>
+        <h1 style="--i:4">Contact</h1>
+    </div>
     <script>
         const icon = document.querySelector('.nav-icon');
+        const menu = document.querySelector('.menu')
 
         icon.addEventListener('click', function () {
             icon.classList.toggle('icon-active')
+            menu.classList.toggle('active')
         })
     </script>
 </body>
